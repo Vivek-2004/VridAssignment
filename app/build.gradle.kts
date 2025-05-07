@@ -47,15 +47,12 @@ android {
 }
 
 dependencies {
-
-    dependencies {
-        implementation ("androidx.navigation:navigation-compose:2.8.9")
-        implementation ("com.google.accompanist:accompanist-webview:0.34.0")
-        implementation ("io.coil-kt:coil-compose:2.6.0")
-        implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-        implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-        implementation ("androidx.webkit:webkit:1.13.0")
-    }
+    implementation (libs.androidx.navigation.compose)
+    implementation (libs.accompanist.webview)
+    implementation (libs.coil.compose)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.androidx.webkit)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

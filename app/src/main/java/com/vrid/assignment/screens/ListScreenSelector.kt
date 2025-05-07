@@ -5,7 +5,10 @@ import androidx.navigation.NavController
 import com.vrid.assignment.viewmodel.BlogViewModel
 
 @Composable
-fun BlogListScreen(navController: NavController, viewModel: BlogViewModel) {
+fun ListScreenSelector(
+    navController: NavController,
+    viewModel: BlogViewModel
+) {
     when {
         viewModel.isLoading -> LoadingScreen()
         viewModel.errorMessage != null ->
@@ -14,9 +17,10 @@ fun BlogListScreen(navController: NavController, viewModel: BlogViewModel) {
             )
 
         else ->
-            BlogPostsList(
+            BlogListScreen(
                 navController = navController,
-                posts = viewModel.blogPosts
+                posts = viewModel.blogPosts,
+                viewModel = viewModel
             )
     }
 }

@@ -4,21 +4,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.vrid.assignment.navigation.MyApp
+import com.vrid.assignment.network.NetworkObserver
+import com.vrid.assignment.network.NetworkStatus
 import com.vrid.assignment.ui.theme.VridAssignmentTheme
-import com.vrid.assignment.viewmodel.BlogViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val networkObserver = NetworkObserver(applicationContext)
         setContent {
             VridAssignmentTheme {
-                val viewModel: BlogViewModel = viewModel()
-                MyApp(
-                    blogViewModel = viewModel
-                )
+                val networkStatus by networkObserver.networkStatus.collectAsState(initial = NetworkStatus.Unavailable)
+                MyApp(networkStatus = networkStatus)
             }
         }
     }
